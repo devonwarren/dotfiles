@@ -1,12 +1,18 @@
+right_format = """
+$status\
+$cmd_duration\
+$time\
+"""
+
 format = """
-[ ](bg:color_1)\
 $username\
-[](fg:color_1 bg:color_2)\
-[$directory](bg:prev_bg)\
-[](fg:color_2 bg:color_3)\
+[${custom.separator}](fg:prev_bg bg:dir_bg)\
+$directory\
+[${custom.separator}](fg:prev_bg bg:git_bg)\
 $git_branch\
 $git_status\
-[](fg:color_3 bg:color_4)\
+$kubernetes\
+[\
 $c\
 $elixir\
 $elm\
@@ -17,42 +23,59 @@ $java\
 $julia\
 $nodejs\
 $nim\
+$python\
 $rust\
 $scala\
-[](fg:color_4 bg:color_5)\
-$cmd_duration\
-[ ](fg:color_5)\
+](fg:code_fg bg:code_bg)\
+[${custom.separator}](fg:prev_bg)\
+${custom.dualline}\
+$character\
 """
 
-# add new line for pr
+# add new line for spacing between commands
 add_newline = true
 
 palette = "devon"
 
 [palettes.devon]
-color_1 = "#1b1d1e"
-color_2 = "#4e82aa"
-color_3 = "#82b414"
-color_4 = "blue"
-color_5 = "yellow"
-color_6 = "red"
+user_bg = "#1b1d1e"
+user_fg = "253"
+dir_bg = "#4e82aa"
+dir_fg = "#000000"
+git_bg = "#82b414"
+git_fg = "#253"
+k8s_bg = "yellow"
+k8s_fg = "#000000"
+code_bg = "#4e82aa"
+code_fg = "#111111"
+extra_fg = "#222222"
+
+[custom.separator]
+when = true
+symbol = ""
+format = '$symbol'
+
+[custom.dualline]
+when = true
+format = " \n "
+
 
 # You can also replace your username with a neat symbol like   or disable this
 # and use the os module below
 [username]
 show_always = true
-style_user = ""
-style_root = "bold"
-format = '[$user ]($style)'
+style_user = "bg:user_bg fg:user_fg"
+style_root = "bg:user_bg fg:user_fg bold"
+format = '[ $user ]($style)'
 disabled = false
 
+
 [directory]
-format = " $path "
+format = "[ $path ]($style)"
+style = 'bg:dir_bg fg:dir_fg'
 truncation_length = 3
 truncation_symbol = "…/"
 
-# Here is how you can shorten some long paths by text replacement
-# similar to mapped_locations in Oh My Posh:
 [directory.substitutions]
 "Documents" = "󰈙 "
 "Downloads" = " "
@@ -64,25 +87,6 @@ truncation_symbol = "…/"
 # So either put "Important Documents" before "Documents" or use the substituted version:
 # "Important 󰈙 " = " 󰈙 "
 
-[c]
-symbol = " "
-style = "bg:#86BBD8"
-format = '[ $symbol ($version) ]($style)'
-
-[docker_context]
-symbol = " "
-style = "bg:#06969A"
-format = '[ $symbol $context ]($style)'
-
-[elixir]
-symbol = " "
-style = "bg:#86BBD8"
-format = '[ $symbol ($version) ]($style)'
-
-[elm]
-symbol = " "
-style = "bg:#86BBD8"
-format = '[ $symbol ($version) ]($style)'
 
 [git_branch]
 style = "bg:prev_bg fg:prev_fg"
@@ -93,53 +97,116 @@ format = '[ $symbol $branch]($style)'
 style = "bg:prev_bg fg:prev_fg"
 format = '[ $all_status$ahead_behind ]($style)'
 
+
+
+[kubernetes]
+disabled = false
+style = "bg:k8s_bg fg:k8s_fg"
+format = '$symbol[ $context ]($style)[](fg:prev_bg bg:code_bg)'
+symbol = "[ 󱃾](fg:prev_bg bg:k8s_bg)"
+
+[[kubernetes.contexts]]
+# "bold red" style + default symbol when Kubernetes current context name equals "production" *and* the current user
+# equals "admin_user"
+context_pattern = "defdault"
+style = "bold bg:red"
+symbol = "[ 󱃾](fg:prev_bg bg:red)"
+
+[c]
+symbol = " "
+style = "fg:code_fg bg:code_bg"
+format = '[ $symbol ($version) ]($style)'
+
+[elixir]
+symbol = " "
+style = "fg:code_fg bg:code_bg"
+format = '[ $symbol ($version) ]($style)'
+
+[elm]
+symbol = " "
+style = "fg:code_fg bg:code_bg"
+format = '[ $symbol ($version) ]($style)'
+
 [golang]
 symbol = " "
-style = "bg:#86BBD8"
+style = "fg:code_fg bg:code_bg"
 format = '[ $symbol ($version) ]($style)'
 
 [gradle]
-style = "bg:#86BBD8"
 format = '[ $symbol ($version) ]($style)'
+style = "fg:code_fg bg:code_bg"
 
 [haskell]
 symbol = " "
-style = "bg:#86BBD8"
+style = "fg:code_fg bg:code_bg"
 format = '[ $symbol ($version) ]($style)'
 
 [java]
 symbol = " "
-style = "bg:#86BBD8"
+style = "fg:code_fg bg:code_bg"
 format = '[ $symbol ($version) ]($style)'
 
 [julia]
 symbol = " "
-style = "bg:#86BBD8"
+style = "fg:code_fg bg:code_bg"
 format = '[ $symbol ($version) ]($style)'
 
 [nodejs]
 symbol = ""
-style = "bg:#86BBD8"
+style = "fg:code_fg bg:code_bg"
 format = '[ $symbol ($version) ]($style)'
 
 [nim]
 symbol = "󰆥 "
-style = "bg:#86BBD8"
+style = "fg:code_fg bg:code_bg"
+format = '[ $symbol ($version) ]($style)'
+
+[python]
+symbol = " "
+style = "fg:code_fg bg:code_bg"
 format = '[ $symbol ($version) ]($style)'
 
 [rust]
 symbol = ""
-style = "bg:#86BBD8"
+style = "fg:code_fg bg:code_bg"
 format = '[ $symbol ($version) ]($style)'
 
 [scala]
 symbol = " "
-style = "bg:#86BBD8"
+style = "fg:code_fg bg:code_bg"
 format = '[ $symbol ($version) ]($style)'
+
 
 [cmd_duration]
 disabled = false
-min_time = 5000
-style = "bg:prev_bg fg:prev_fg"
+min_time = 1000
+style = "fg:extra_fg"
 format = '[ 󱎫 $duration ]($style)'
 
+[status]
+disabled = false
+style = ''
+format = '[ $symbol ]($style)'
+pipestatus_format = '[ $pipestatus ]($style)'
+map_symbol = true
+pipestatus = true
+recognize_signal_code = true
+symbol = '[✗](bold red)'
+success_symbol = '[✓](green)'
+not_executable_symbol = '[󰩋](bold fg:red)'
+not_found_symbol = '[](bold fg:red)'
+sigint_symbol = '[⚡](fg:yellow)'
+signal_symbol = '[⚡](bold fg:red)'
+
+
+[character]
+success_symbol = '[❯](bold white) '
+error_symbol = '[❯](bold white) '
+
+[time]
+disabled = false
+format = '[$time]($style) '
+style = 'fg:extra_fg'
+use_12hr = true
+time_format = '%b %-e %-l:%-M:%-S %P'
+utc_time_offset = 'local'
