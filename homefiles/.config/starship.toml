@@ -1,13 +1,12 @@
 format = """
-[](#9A348E)\
-$os\
+[ ](bg:color_1)\
 $username\
-[](bg:#DA627D fg:#9A348E)\
-$directory\
-[](fg:#DA627D bg:#FCA17D)\
+[](fg:color_1 bg:color_2)\
+[$directory](bg:prev_bg)\
+[](fg:color_2 bg:color_3)\
 $git_branch\
 $git_status\
-[](fg:#FCA17D bg:#86BBD8)\
+[](fg:color_3 bg:color_4)\
 $c\
 $elixir\
 $elm\
@@ -20,34 +19,35 @@ $nodejs\
 $nim\
 $rust\
 $scala\
-[](fg:#86BBD8 bg:#06969A)\
-$docker_context\
-[](fg:#06969A bg:#33658A)\
+[](fg:color_4 bg:color_5)\
 $cmd_duration\
-[ ](fg:#33658A)\
+[ ](fg:color_5)\
 """
 
 # add new line for pr
 add_newline = true
 
+palette = "devon"
+
+[palettes.devon]
+color_1 = "#1b1d1e"
+color_2 = "#4e82aa"
+color_3 = "#82b414"
+color_4 = "blue"
+color_5 = "yellow"
+color_6 = "red"
+
 # You can also replace your username with a neat symbol like   or disable this
 # and use the os module below
 [username]
 show_always = true
-style_user = "bg:#9A348E"
-style_root = "bg:#9A348E"
+style_user = ""
+style_root = "bold"
 format = '[$user ]($style)'
 disabled = false
 
-# An alternative to the username module which displays a symbol that
-# represents the current operating system
-[os]
-style = "bg:#9A348E"
-disabled = true # Disabled by default
-
 [directory]
-style = "bg:#DA627D"
-format = "[ $path ]($style)"
+format = " $path "
 truncation_length = 3
 truncation_symbol = "…/"
 
@@ -85,13 +85,13 @@ style = "bg:#86BBD8"
 format = '[ $symbol ($version) ]($style)'
 
 [git_branch]
+style = "bg:prev_bg fg:prev_fg"
 symbol = ""
-style = "bg:#FCA17D"
-format = '[ $symbol $branch ]($style)'
+format = '[ $symbol $branch]($style)'
 
 [git_status]
-style = "bg:#FCA17D"
-format = '[$all_status$ahead_behind ]($style)'
+style = "bg:prev_bg fg:prev_fg"
+format = '[ $all_status$ahead_behind ]($style)'
 
 [golang]
 symbol = " "
@@ -137,14 +137,9 @@ symbol = " "
 style = "bg:#86BBD8"
 format = '[ $symbol ($version) ]($style)'
 
-
 [cmd_duration]
 disabled = false
 min_time = 5000
-style = "bg:#33658A"
+style = "bg:prev_bg fg:prev_fg"
 format = '[ 󱎫 $duration ]($style)'
 
-[time]
-disabled = true
-time_format = "%R" # Hour:Minute Format
-style = "bg:#33658A"
