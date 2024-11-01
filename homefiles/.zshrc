@@ -42,6 +42,9 @@ bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
 bindkey '^[w' kill-region
 
+# Disable beep
+unsetopt beep
+
 # History
 HISTSIZE=10000
 HISTFILE=~/.zsh_history
@@ -62,6 +65,12 @@ zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
+# pyenv setup
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init --path)"
+eval "$(pyenv init -)"
+
 # Aliases
 alias k="kubectl"
 alias kns="kubens"
@@ -70,13 +79,20 @@ alias g="git"
 alias wip="git add . && git commit -m'wip' && git push"
 alias vim="nvim"
 alias vi="nvim"
+alias clip='xclip -selection clipboard'
 
 
 # Shell integrations
-eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
 
 
+
+# Powerline Prompt
+source /usr/share/powerline/bindings/zsh/powerline.zsh
+
+# PATH changes
+export PATH="$PATH:$HOME/.local/bin"
+
 # initialize starship prompt
-eval "$(starship init zsh)"
+#eval "$(starship init zsh)"
 
