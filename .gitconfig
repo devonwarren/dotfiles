@@ -1,0 +1,28 @@
+[user]
+	name = Devon Warren
+	email = devon.warren@regard.com
+[push]
+	autoSetupRemote = true
+[alias]
+	sw = switch
+	br = branch
+	ci = commit
+	st = status
+	rv = revert
+	co = checkout
+	last = log -1 HEAD
+	last-branches = for-each-ref --sort=-committerdate refs/heads/
+	skip = update-index --skip-worktree
+	unskip = update-index --skip-worktree
+	blameo = blame -w -C -C -C
+	word-diff = diff --word-diff
+	push-force = push --force-with-lease
+	merges = log --online --decorate --color=auto --merges --first-parent
+	l = log --oneline --decorate --color=auto --no-merges
+	main-reset = checkout origin/unstable
+[diff]
+	algorithm = histogram
+[column]
+	ui = auto
+[branch]
+	sort = -committerdate
