@@ -87,12 +87,10 @@ eval "$(zoxide init --cmd cd zsh)"
 
 
 
-# Powerline Prompt
-source /usr/share/powerline/bindings/zsh/powerline.zsh
-
 # PATH changes
 export PATH="$PATH:$HOME/.local/bin"
 
-# initialize starship prompt
-#eval "$(starship init zsh)"
+
+# Oh-My-Posh Prompt 
+eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/config.json)"
 
