@@ -41,6 +41,10 @@ bindkey -e
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
 bindkey '^[w' kill-region
+# Ctrl+Arrow for moving through words
+bindkey '^[[1;5D' backward-word
+bindkey '^[[1;5C' forward-word
+
 
 # Disable beep
 unsetopt beep
