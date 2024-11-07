@@ -25,6 +25,8 @@
     {
       "type": "prompt",
       "alignment": "left",
+      "newline" : true,
+      "filler": " ",
       "segments": [
         {
           "style": "powerline",
@@ -68,14 +70,6 @@
             "{{ if gt .Behind 0 }}#7A306C{{ end }}"
           ]
         },
-	{
-	  "type": "kubectl",
-	  "style": "powerline",
-	  "foreground": "#000000",
-	  "background": "#ebcc34",
-          "powerline_symbol": "\ue0b0",
-	  "template": " \udb84\udcfe {{.Context}} "
-	},
         {
           "style": "powerline",
           "template": " \uf0e7 ",
@@ -153,16 +147,38 @@
           "type": "time"
         }
       ]
+    },
+    {
+      "alignment": "left",
+      "newline": true,
+      "segments": [{
+        "foreground": "green",
+        "style": "plain",
+        "template": " >",
+        "type": "text"
+        }],
+      "type": "prompt"
     }
   ],
   "tooltips": [
+    {
+      "type": "kubectl",
+      "style": "diamond",
+      "foreground": "#000000",
+      "background": "#ebcc34",
+      "tips": [
+        "k",
+        "kubectl",
+        "kns",
+        "kctx",
+        "argocd"
+      ]
+    },
     {
       "properties": {
         "display_default": true
       },
       "style": "diamond",
-      "leading_diamond": "\ue0b0",
-      "trailing_diamond": "\ue0b4",
       "template": " \ue7ad {{ .Profile }}{{ if .Region }}@{{ .Region }}{{ end }} ",
       "foreground": "p:white",
       "background": "p:orange",
