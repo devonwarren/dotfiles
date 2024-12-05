@@ -84,6 +84,8 @@ alias wip="git add . && git commit -m'wip' && git push"
 alias vim="nvim"
 alias vi="nvim"
 alias clip='xclip -selection clipboard'
+alias cb='git branch --sort=-committerdate | fzf --header Checkout --cycle | xargs git checkout'
+alias pul='pulumi'
 
 
 # Shell integrations
