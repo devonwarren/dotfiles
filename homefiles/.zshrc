@@ -86,6 +86,7 @@ alias vi="nvim"
 alias clip='xclip -selection clipboard'
 alias cb='git branch --sort=-committerdate | fzf --header Checkout --cycle | xargs git checkout'
 alias pul='pulumi'
+alias awsl='aws sso login'
 
 
 # Shell integrations
