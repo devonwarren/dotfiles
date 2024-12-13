@@ -75,16 +75,27 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init --path)"
 eval "$(pyenv init -)"
 
+######################################################################################################
 # Aliases
+######################################################################################################
+
+# kubernetes
 alias k="kubectl"
 alias kns="kubens"
 alias kctx="kubectx"
+alias kevents="kubectl get events --sort-by='.lastTimestamp'"
+alias kdrain="kubectl drain --ignore-daemonsets --delete-emptydir-data"
+alias kcapacity="k resource-capacity --util"
+
+# git
 alias g="git"
 alias wip="git add . && git commit -m'wip' && git push"
+alias cb='git branch --sort=-committerdate | fzf --header Checkout --cycle | xargs git checkout'
+
+# misc
 alias vim="nvim"
 alias vi="nvim"
 alias clip='xclip -selection clipboard'
-alias cb='git branch --sort=-committerdate | fzf --header Checkout --cycle | xargs git checkout'
 alias pul='pulumi'
 alias awsl='aws sso login'
 
@@ -92,11 +103,8 @@ alias awsl='aws sso login'
 # Shell integrations
 eval "$(zoxide init --cmd cd zsh)"
 
-
-
 # PATH changes
-export PATH="$PATH:$HOME/.local/bin"
-
+export PATH="$PATH:$HOME/.local/bin:$HOME/.rd/bin:${KREW_ROOT:-$HOME/.krew}/bin:$HOME/.local/bin:$HOME/.pulumi/bin:/home/linuxbrew/.linuxbrew/bin"
 
 # Oh-My-Posh Prompt 
 eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/config.json)"
