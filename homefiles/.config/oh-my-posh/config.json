@@ -48,6 +48,17 @@
         },
         {
           "properties": {
+            "style": "accordian"
+          },
+	  "type": "python",
+	  "style": "accordian",
+          "powerline_symbol": "\ue0b0",
+	  "foreground": "p:black",
+	  "background": "p:green",
+	  "template": " \ue73c {{ .Venv }}:{{ .Major }}.{{ .Minor }} "
+        },
+        {
+          "properties": {
             "branch_max_length": 25,
             "fetch_status": true,
             "fetch_upstream_icon": true
@@ -171,8 +182,27 @@
         "kubectl",
         "kns",
         "kctx",
-        "argocd"
+        "argocd",
+	"argo",
+	"awfs",
+	"helm"
       ]
+    },
+    {
+	"type": "pulumi",
+	"style": "diamond",
+	"powerline_symbol": "\ue873",
+	"foreground": "#ffffff",
+	"background": "#662d91",
+        "tips": [
+          "pul",
+          "puls",
+          "pulumi"
+        ],
+	"template": " \ue873 {{ .Stack }} ",
+        "properties": {
+          "fetch_stack": true
+        }
     },
     {
       "properties": {
