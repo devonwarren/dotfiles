@@ -7,16 +7,17 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "icon_theme": "Material Icon Theme",
   "edit_predictions": {
     "disabled_globs": [],
-    "mode": "eager_preview"
+    "mode": "subtle"
   },
   "assistant": {
-    "default_open_ai_model": "gpt-4",
+    "default_open_ai_model": "claude-3-7-sonnet",
     "enabled": true,
     "default_model": {
-      "provider": "copilot_chat",
-      "model": "gpt-3.5-turbo"
+      "provider": "zed.dev",
+      "model": "claude-3-7-sonnet-latest"
     },
     "version": "2"
   },
@@ -24,6 +25,10 @@
   "buffer_font_family": "Hack Nerd Font Mono",
   "buffer_font_fallbacks": ["Hack Nerd Font Mono", "Hack"],
   "buffer_font_weight": 100,
+  "collaboration_panel": {
+    // nobody else uses Zed yet
+    "button": false
+  },
   "features": {
     "edit_prediction_provider": "copilot"
   },
@@ -31,16 +36,23 @@
     "**/.git",
     "**/__pycache__",
     "**/.ruff_cache",
+    "**/.mypy_cache",
     "**/.venv"
   ],
+  "file_types": {
+    "Helm": [
+      "**/templates/**/*.tpl",
+      "**/templates/**/*.yaml",
+      "**/templates/**/*.yml",
+      "**/helmfile.d/**/*.yaml",
+      "**/helmfile.d/**/*.yml"
+    ]
+  },
+  "format_on_save": "off",
+  "formatter": "prettier",
   "git_status": true,
   "languages": {
-    "JSON": {
-      "format_on_save": "off"
-    },
     "Python": {
-      // "language_servers": ["ruff"],
-      // Or, if there are other language servers you want to use with Python
       "language_servers": ["pyright", "ruff"],
       "format_on_save": "on",
       "formatter": [
@@ -63,12 +75,23 @@
   "lsp": {
     "pyright": {
       "settings": {
+        "python": {
+          "pythonPath": ".venv/bin/python"
+        },
         "python.analysis": {
           "autoImportCompletions": false
         }
       }
     }
   },
+  "project_panel": {
+    "entry_spacing": "standard",
+    "indent_size": 14
+  },
+  "outline_panel": {
+    "indent_size": 15
+  },
+
   "ui_font_size": 15,
   "terminal": {
     "font_family": "Hack Nerd Font Mono",
@@ -76,11 +99,24 @@
     "line_height": {
       "custom": 1.2
     },
-    "font_weight": 0
+    "font_weight": 0,
+    "detect_venv": {
+      "on": {
+        // Default directories to search for virtual environments, relative
+        // to the current working directory. We recommend overriding this
+        // in your project's settings, rather than globally.
+        "directories": [".env", "env", ".venv", "venv"],
+        // Can also be `csh`, `fish`, and `nushell`
+        "activate_script": "default"
+      }
+    },
+    "toolbar": {
+      "breadcrumbs": true
+    }
   },
   "theme": {
     "mode": "system",
     "light": "One Light",
-    "dark": "One Dark Pro Monokai Darker"
+    "dark": "One Dark Pro"
   }
 }
