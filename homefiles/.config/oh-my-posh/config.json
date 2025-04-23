@@ -7,6 +7,8 @@
     "orange": "#F07623",
     "red": "#D81E5B",
     "white": "#E0DEF4",
+    "darkgrey": "#666666",
+    "grey": "#AAAAAA",
     "yellow": "#F3AE35"
   },
   "secondary_prompt": {
@@ -15,9 +17,10 @@
     "background": "transparent"
   },
   "transient_prompt": {
-    "template": "<p:yellow,transparent>\ue0b6</><,p:yellow> {{ .Folder }} </><p:yellow,transparent>\ue0b0</> ",
-    "foreground": "p:black",
-    "background": "transparent"
+    "template": "<p:white,p:darkgrey>  {{ .Segments.Time.CurrentDate | date \"15:04:05\" }}  </><p:darkgrey,transparent>\ue0b0</> ",
+    "background": "transparent",
+    "foreground": "p:white",
+    "newline": true
   },
   "console_title_template": "{{ .Shell }} in {{ .Folder }}",
   "shell_integration": true,
@@ -45,17 +48,6 @@
           "powerline_symbol": "\ue0b0",
           "background": "p:orange",
           "type": "path"
-        },
-        {
-          "properties": {
-            "style": "accordian"
-          },
-	  "type": "python",
-	  "style": "accordian",
-          "powerline_symbol": "\ue0b0",
-	  "foreground": "p:black",
-	  "background": "p:green",
-	  "template": " \ue73c {{ .Venv }}:{{ .Major }}.{{ .Minor }} "
         },
         {
           "properties": {
@@ -88,6 +80,18 @@
           "powerline_symbol": "\ue0b0",
           "background": "p:yellow",
           "type": "root"
+        },
+        {
+          "properties": {
+            "style": "powerline",
+            "always_enabled": true
+          },
+          "type": "python",
+          "style": "powerline",
+          "powerline_symbol": "\ue0b0",
+          "foreground": "p:black",
+          "background": "p:green",
+          "template": " \ue73c {{ .Venv }}:{{ .Major }}.{{ .Minor }} "
         },
         {
           "properties": {
@@ -183,23 +187,23 @@
         "kns",
         "kctx",
         "argocd",
-	"argo",
-	"awfs",
-	"helm"
+        "argo",
+        "awfs",
+        "helm"
       ]
     },
     {
-	"type": "pulumi",
-	"style": "diamond",
-	"powerline_symbol": "\ue873",
-	"foreground": "#ffffff",
-	"background": "#662d91",
+      "type": "pulumi",
+       "style": "diamond",
+       "powerline_symbol": "\ue873",
+       "foreground": "#ffffff",
+       "background": "#662d91",
         "tips": [
           "pul",
           "puls",
           "pulumi"
         ],
-	"template": " \ue873 {{ .Stack }} ",
+        "template": " \ue873 {{ .Stack }} ",
         "properties": {
           "fetch_stack": true
         }
