@@ -12,12 +12,12 @@
     "disabled_globs": [],
     "mode": "subtle"
   },
-  "assistant": {
-    "default_open_ai_model": "claude-3-7-sonnet",
+  "agent": {
+    "default_open_ai_model": "gpt-4.1",
     "enabled": true,
     "default_model": {
-      "provider": "zed.dev",
-      "model": "claude-3-7-sonnet-latest"
+      "provider": "copilot_chat",
+      "model": "gpt-4.1"
     },
     "version": "2"
   },
@@ -36,8 +36,8 @@
     "**/.git",
     "**/__pycache__",
     "**/.ruff_cache",
-    "**/.mypy_cache",
-    "**/.venv"
+    "**/.mypy_cache"
+    // "**/.venv"
   ],
   "file_types": {
     "Helm": [
@@ -45,7 +45,9 @@
       "**/templates/**/*.yaml",
       "**/templates/**/*.yml",
       "**/helmfile.d/**/*.yaml",
-      "**/helmfile.d/**/*.yml"
+      "**/helmfile.d/**/*.yml",
+      "**/charts/**/*.yml",
+      "**/chart/**/*.yml"
     ]
   },
   "format_on_save": "off",
@@ -53,7 +55,10 @@
   "git_status": true,
   "languages": {
     "Python": {
-      "language_servers": ["pyright", "ruff"],
+      // "language_servers": ["ruff"],
+      // Or, if there are other language servers you want to use with Python
+      // "language_servers": ["basedpyright", "ruff"],
+      "language_servers": ["basedpyright", "!pyright", "ruff"],
       "format_on_save": "on",
       "formatter": [
         {
@@ -72,14 +77,41 @@
       ]
     }
   },
+  "load_direnv": "shell_hook",
   "lsp": {
     "pyright": {
       "settings": {
+        "python.analysis": {
+          "autoImportCompletions": false,
+          "diagnosticMode": "workspace"
+          // "typeCheckingMode": "strict"
+        },
         "python": {
           "pythonPath": ".venv/bin/python"
-        },
-        "python.analysis": {
-          "autoImportCompletions": false
+        }
+      }
+    },
+    "yaml-language-server": {
+      "settings": {
+        "yaml": {
+          // "keyOrdering": true,
+          // "format": {
+          //   "singleQuote": true
+          // },
+          "schemas": {
+            "https://gitlab.com/gitlab-org/gitlab/-/raw/master/app/assets/javascripts/editor/schema/ci.json": [
+              "*/**/.gitlab-ci.yml",
+              "*/**/gitlab-ci.yaml"
+            ],
+            "/home/devon/Projects/iac/customers.schema.json": [
+              "**/customers.yaml",
+              "**/customers.*.yaml"
+            ],
+            "https://raw.githubusercontent.com/argoproj/argo-schema-generator/refs/heads/main/schema/argo_cd_kustomize_schema.json": [
+              "**/app.yaml"
+            ],
+            "Kubernetes": "**/*.yaml"
+          }
         }
       }
     }
@@ -99,24 +131,11 @@
     "line_height": {
       "custom": 1.2
     },
-    "font_weight": 0,
-    "detect_venv": {
-      "on": {
-        // Default directories to search for virtual environments, relative
-        // to the current working directory. We recommend overriding this
-        // in your project's settings, rather than globally.
-        "directories": [".env", "env", ".venv", "venv"],
-        // Can also be `csh`, `fish`, and `nushell`
-        "activate_script": "default"
-      }
-    },
-    "toolbar": {
-      "breadcrumbs": true
-    }
+    "font_weight": 0
   },
   "theme": {
     "mode": "system",
     "light": "One Light",
-    "dark": "One Dark Pro"
+    "dark": "VSCode Dark Modern"
   }
 }
