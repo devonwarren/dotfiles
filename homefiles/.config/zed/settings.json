@@ -47,7 +47,9 @@
       "**/helmfile.d/**/*.yaml",
       "**/helmfile.d/**/*.yml",
       "**/charts/**/*.yml",
-      "**/chart/**/*.yml"
+      "**/charts/**/*.yaml",
+      "**/chart/**/*.yml",
+      "**/chart/**/*.yaml"
     ]
   },
   "format_on_save": "off",
