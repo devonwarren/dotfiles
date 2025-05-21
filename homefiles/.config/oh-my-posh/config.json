@@ -86,6 +86,21 @@
             "style": "powerline",
             "always_enabled": true
           },
+          "type": "kubectl",
+          "style": "powerline",
+          "powerline_symbol": "\ue0b0",
+          "foreground": "p:black",
+          "background": "p:blue",
+	  "background_templates": [
+		  "{{if contains \"prd\" .Context}}p:red{{end}}"
+	  ],
+	  "template": " \ue81d {{.Context}}{{if .Namespace}} :: {{.Namespace}}{{end}} "
+        },
+        {
+          "properties": {
+            "style": "powerline",
+            "always_enabled": true
+          },
           "type": "python",
           "style": "powerline",
           "powerline_symbol": "\ue0b0",
@@ -176,22 +191,6 @@
     }
   ],
   "tooltips": [
-    {
-      "type": "kubectl",
-      "style": "diamond",
-      "foreground": "#000000",
-      "background": "#ebcc34",
-      "tips": [
-        "k",
-        "kubectl",
-        "kns",
-        "kctx",
-        "argocd",
-        "argo",
-        "awfs",
-        "helm"
-      ]
-    },
     {
       "type": "pulumi",
        "style": "diamond",
