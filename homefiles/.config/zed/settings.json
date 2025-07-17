@@ -7,117 +7,7 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
-  "icon_theme": "Material Icon Theme",
-  "edit_predictions": {
-    "disabled_globs": [],
-    "mode": "subtle"
-  },
-  "agent": {
-    "default_open_ai_model": "gpt-4.1",
-    "enabled": true,
-    "default_model": {
-      "provider": "copilot_chat",
-      "model": "gpt-4.1"
-    },
-    "version": "2"
-  },
-  "buffer_font_size": 12,
-  "buffer_font_family": "Hack Nerd Font Mono",
-  "buffer_font_fallbacks": ["Hack Nerd Font Mono", "Hack"],
-  "buffer_font_weight": 100,
-  "collaboration_panel": {
-    // nobody else uses Zed yet
-    "button": false
-  },
-  "features": {
-    "edit_prediction_provider": "copilot"
-  },
-  "file_scan_exclusions": [
-    "**/.git",
-    "**/__pycache__",
-    "**/.ruff_cache",
-    "**/.mypy_cache"
-    // "**/.venv"
-  ],
-  "file_types": {
-    "Helm": [
-      "**/templates/**/*.tpl",
-      "**/templates/**/*.yaml",
-      "**/templates/**/*.yml",
-      "**/helmfile.d/**/*.yaml",
-      "**/helmfile.d/**/*.yml",
-      "**/charts/**/*.yml",
-      "**/charts/**/*.yaml",
-      "**/chart/**/*.yml",
-      "**/chart/**/*.yaml"
-    ]
-  },
-  "format_on_save": "off",
-  "formatter": "prettier",
-  "git_status": true,
-  "languages": {
-    "Python": {
-      // "language_servers": ["ruff"],
-      // Or, if there are other language servers you want to use with Python
-      // "language_servers": ["basedpyright", "ruff"],
-      "language_servers": ["basedpyright", "!pyright", "ruff"],
-      "format_on_save": "on",
-      "formatter": [
-        {
-          "language_server": {
-            "name": "ruff"
-          }
-        },
-        {
-          "code_actions": {
-            // Fix all auto-fixable lint violations
-            "source.fixAll.ruff": true
-            // Organize imports
-            // "source.organizeImports.ruff": true
-          }
-        }
-      ]
-    }
-  },
-  "load_direnv": "shell_hook",
-  "lsp": {
-    "pyright": {
-      "settings": {
-        "python.analysis": {
-          "autoImportCompletions": false,
-          "diagnosticMode": "workspace"
-          // "typeCheckingMode": "strict"
-        },
-        "python": {
-          "pythonPath": ".venv/bin/python"
-        }
-      }
-    },
-    "yaml-language-server": {
-      "settings": {
-        "yaml": {
-          // "keyOrdering": true,
-          // "format": {
-          //   "singleQuote": true
-          // },
-          "schemas": {
-            "https://gitlab.com/gitlab-org/gitlab/-/raw/master/app/assets/javascripts/editor/schema/ci.json": [
-              "*/**/.gitlab-ci.yml",
-              "*/**/gitlab-ci.yaml"
-            ],
-            "/home/devon/Projects/iac/customers.schema.json": [
-              "**/customers.yaml",
-              "**/customers.*.yaml"
-            ],
-            "https://raw.githubusercontent.com/argoproj/argo-schema-generator/refs/heads/main/schema/argo_cd_kustomize_schema.json": [
-              "**/app.yaml"
-            ],
-            "Kubernetes": "**/*.yaml"
-          }
-        }
-      }
-    }
-  },
+  // THEMING
   "project_panel": {
     "entry_spacing": "standard",
     "indent_size": 14
@@ -139,5 +29,143 @@
     "mode": "system",
     "light": "One Light",
     "dark": "VSCode Dark Modern"
+  },
+  "icon_theme": "Material Icon Theme",
+  "buffer_font_size": 12,
+  "buffer_font_family": "Hack Nerd Font Mono",
+  "buffer_font_fallbacks": ["Hack Nerd Font Mono", "Hack"],
+  "buffer_font_weight": 100,
+  "collaboration_panel": {
+    "button": false
+  },
+  // EXTENSIONS
+  "auto_install_extensions": {
+    "dockerfile": true,
+    "helm": true,
+    "html": true,
+    "make": true,
+    "material-icon-theme": true,
+    "ruff": true,
+    "terraform": true,
+    "toml": true,
+    "vscode-dark-modern": true
+  },
+  // AI
+  "show_edit_predictions": false,
+  "edit_predictions": {
+    "disabled_globs": [],
+    "mode": "subtle"
+  },
+  "agent": {
+    "always_allow_tool_actions": true,
+    "enabled": true,
+    "default_model": {
+      "provider": "copilot_chat",
+      "model": "gpt-4.1"
+    }
+  },
+  "features": {
+    "edit_prediction_provider": "copilot"
+  },
+  // FILE SETTINGS
+  "file_scan_exclusions": [
+    "**/.git",
+    "**/__pycache__",
+    "**/.ruff_cache",
+    "**/.mypy_cache"
+    // "**/.venv"
+  ],
+  "file_types": {
+    "Dockerfile": [
+      "**/Dockerfile",
+      "**/Dockerfile*"
+    ],
+    "Helm": [
+      "**/templates/**/*.tpl",
+      "**/templates/**/*.yaml",
+      "**/templates/**/*.yml",
+      "**/helmfile.d/**/*.yaml",
+      "**/helmfile.d/**/*.yml",
+      "**/charts/**/*.yml",
+      "**/charts/**/*.yaml",
+      "**/chart/**/*.yml",
+      "**/chart/**/*.yaml"
+    ]
+  },
+  "format_on_save": "off",
+  "formatter": "prettier",
+  "languages": {
+    "Python": {
+      "show_edit_predictions": true,
+      "language_servers": ["pyright", "ruff"],
+      "format_on_save": "on",
+      "formatter": [
+        {
+          "language_server": {
+            "name": "ruff"
+          }
+        },
+        {
+          "code_actions": {
+            // Fix all auto-fixable lint violations
+            "source.fixAll.ruff": true,
+            // Organize imports
+            "source.organizeImports.ruff": true
+          }
+        }
+      ]
+    }
+  },
+  "load_direnv": "shell_hook",
+  "lsp": {
+    "pyright": {
+      "settings": {
+        "python.analysis": {
+          "autoImportCompletions": false
+          // "diagnosticMode": "workspace"
+          // "typeCheckingMode": "strict"
+        },
+        "python": {
+          "pythonPath": ".venv/bin/python"
+        }
+      }
+    },
+    "yaml-language-server": {
+      "settings": {
+        "yaml": {
+          // "keyOrdering": true,
+          // "format": {
+          //   "singleQuote": true
+          // },
+          "completion": true,
+          "schemaStore": {
+            "enable": true
+            // "url": "https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/"
+          },
+          "schemas": {
+            // "kubernetes": [
+            //   "**/*.yaml"
+            // ],
+            "https://gitlab.com/gitlab-org/gitlab/-/raw/master/app/assets/javascripts/editor/schema/ci.json": [
+              "*/**/.gitlab-ci.yml",
+              "*/**/gitlab-ci.yaml"
+            ],
+            "iac/customers.schema.json": [
+              "**/customers.yaml",
+              "**/customers.*.yaml"
+            ],
+            // "https://raw.githubusercontent.com/argoproj/argo-schema-generator/refs/heads/main/schema/argo_cd_kustomize_schema.json": [
+            "https://raw.githubusercontent.com/datreeio/CRDs-catalog/refs/heads/main/argoproj.io/applicationset_v1alpha1.json": [
+              "**/app.yaml"
+            ],
+            "pulumi": [
+              "**/Pulumi.yaml",
+              "**/Pulumi.*.yaml"
+            ]
+
+          }
+        }
+      }
+    }
   }
 }
